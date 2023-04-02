@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "Operator Mono",
+    "editor.fontSize": 18,
+    "window.zoomLevel": 1.3,
+    "files.autoSave": "afterDelay",
+    "editor.wordWrap": "bounded",
+    "editor.wrappingIndent": "same",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "editor.fontWeight": "350",
+    "editor.lineHeight": 25
+}
