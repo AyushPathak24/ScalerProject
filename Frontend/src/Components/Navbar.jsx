@@ -10,10 +10,9 @@ const Navbar = ({Toggle}) => {
         <div className="collapse navbar-collapse" id="collapsibleNavId">
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">FuddiHotel</a>
+                    <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Booking</a>
                     <div className="dropdown-menu" aria-labelledby="dropdownId">
-                        <a className="dropdown-item" href="#">All Bookings</a>
-                        <a className="dropdown-item" href="#">Add Bookings</a>
+                        <a className="dropdown-item" href="/create">Add Booking</a>
                     </div>
                 </li>
             </ul>

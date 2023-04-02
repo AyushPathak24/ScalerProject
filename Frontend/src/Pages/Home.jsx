@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({ Toggle }) => {
 
@@ -8,6 +9,8 @@ const Home = ({ Toggle }) => {
     const [upcomingCount, setUpcomingCount] = useState(0);
     const [PassedCount, setPassedCount] = useState(0);
     const [cancelCount, setCancelCount] = useState(0);
+
+    const navigate = useNavigate();
 
 
     const getData = async () => {
@@ -58,6 +61,10 @@ const Home = ({ Toggle }) => {
        setRevenue(0);
     }, []);
 
+    const handleEdit = async () => {
+        
+    }
+
     
     const getTables = bookingdata.map((booking, index) => {
         return (<tr key={index}>
@@ -68,16 +75,16 @@ const Home = ({ Toggle }) => {
             <td>{booking.roomType}</td>
             <td>{booking.price}</td>
             <td>
-                <button type="button" class="btn btn-warning"><i className='bi bi-pencil'></i>     Edit</button>
+                <button type="button" className="btn btn-warning"><i className='bi bi-pencil' onClick={(booking) => handleEdit}></i>     Edit</button>
             </td>
-            <td><button type="button" class="btn btn-danger"><i className='bi bi-x-circle'>   Cancel</i></button></td>
+            <td><button type="button" className="btn btn-danger"><i className='bi bi-x-circle'>   Cancel</i></button></td>
         </tr>)
     });
 
     return (
         <div className='px-3'>
             <Navbar Toggle={Toggle} />
-            <div className="container-fluid">
+            <div className="container-fluid p-2">
                 <div className="row g-3  my-2">
                     <div className="col-md-3 p-1">
                         <div className="p-3  bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
