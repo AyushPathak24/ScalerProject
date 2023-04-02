@@ -22,7 +22,7 @@ const Home = ({ Toggle }) => {
             }
         });
         const data = await response.json();
-
+        
         data.map((booking) => {
             tempRevenue += booking.price
         });
