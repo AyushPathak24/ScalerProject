@@ -42,6 +42,15 @@ const updateBookings = async (req, res) => {
     }
 }
 
+const getSingleBooking = async (req, res) => {
+    try {
+       const id = req.params.id;
+       const response  = await BookingModel.findById() 
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const removeBooking = async (req, res) => {
     try {
         const id = req.params.id;

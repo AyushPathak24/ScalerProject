@@ -5,6 +5,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import Sidebar from './Components/Sidebar/Sidebar';
 import Home from './Pages/Home';
 import AddBooking from './Components/AddBooking';
+import EditBooking from './Components/EditBooking';
 
 
 const App = () => {
@@ -29,6 +30,9 @@ const App = () => {
             </div>} exact />
             <Route path='/create' element={<div className='col p-0'>
               <AddBooking />
+            </div>} />
+            <Route path='/edit/:id' element={<div className='col p-0'>
+              <EditBooking />
             </div>} />
           </Routes>
         </BrowserRouter>

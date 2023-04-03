@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Home = ({ Toggle }) => {
 
@@ -9,15 +9,16 @@ const Home = ({ Toggle }) => {
     const [upcomingCount, setUpcomingCount] = useState(0);
     const [PassedCount, setPassedCount] = useState(0);
     const [cancelCount, setCancelCount] = useState(0);
+    const [id , setId] = useState("");
 
     const navigate = useNavigate();
-
+    var cancelBooking = 0;
 
     const getData = async () => {
         var tempRevenue = 0;
         var upcoming = 0;
         var passBooking = 0;
-        var cancelBooking = 0; 
+         
         const response = await fetch('http://localhost:3005', {
             method: 'GET',
             headers: {
@@ -49,21 +50,39 @@ const Home = ({ Toggle }) => {
 
         setRevenue(tempRevenue);
         setPassedCount(passBooking);
-        setCancelCount(cancelBooking);
+        // setCancelCount(cancelBooking);
         setUpcomingCount(upcoming);
         setBookingData(data);
         
         console.log(data);
     }
-
-    useEffect(() => {
-       getData();
-       setRevenue(0);
-    }, []);
-
-    const handleEdit = async () => {
-        
+    const handleCancel = async (booking) => {
+        // e.preventDefault();
+        const id = booking._id;
+        console.log(booking._id);
+        await fetch('http://localhost:3005/cancel/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type':'application/json'
+            }
+        }).then(() => {
+            cancelBooking += 1;
+            window.location.reload();
+        });
     }
+
+    
+
+    const handleEdit = async (booking) => {
+        setId(booking._id);
+    }
+    useEffect(() => {
+        getData();
+        setCancelCount(cancelBooking)
+        setRevenue(0);
+     }, []);
+
+    
 
     
     const getTables = bookingdata.map((booking, index) => {
@@ -75,9 +94,11 @@ const Home = ({ Toggle }) => {
             <td>{booking.roomType}</td>
             <td>{booking.price}</td>
             <td>
-                <button type="button" className="btn btn-warning"><i className='bi bi-pencil' onClick={(booking) => handleEdit}></i>     Edit</button>
+                <button type="button" onClick={() => handleEdit(booking)}className="btn btn-warning"><a href={`/edit/${id}`}>
+                <i className='bi bi-pencil' ></i>     Edit
+                    </a></button>
             </td>
-            <td><button type="button" className="btn btn-danger"><i className='bi bi-x-circle'>   Cancel</i></button></td>
+            <td><button type="button" className="btn btn-danger"><i className='bi bi-x-circle' onClick={() => handleCancel(booking)}>   Cancel</i></button></td>
         </tr>)
     });
 
